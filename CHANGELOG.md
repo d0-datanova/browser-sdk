@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/d0-datanova/browser-sdk/compare/v1.0.0...v1.1.0) (2025-07-09)
+
+### Features
+
+* add NoopEventsService ([55cfca6](https://github.com/d0-datanova/browser-sdk/commit/55cfca62a9892f780228a5ead3c3029b83a112b5))
+
 ## 1.0.0 (2025-07-09)
 
 ### Features
