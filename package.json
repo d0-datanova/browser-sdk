@@ -58,5 +58,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
-  }
+  },
+  "unpkg": "./dist/index.global.js",
+  "jsdelivr": "./dist/index.global.js"
 }
