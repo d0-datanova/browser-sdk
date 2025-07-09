@@ -4,6 +4,8 @@ A lightweight browser SDK for event tracking and A/B testing.
 
 ## Installation
 
+### Package Manager
+
 ```bash
 npm install @datanova/browser
 # or
@@ -12,7 +14,22 @@ yarn add @datanova/browser
 pnpm add @datanova/browser
 ```
 
+### CDN
+
+```html
+<!-- Latest version -->
+<script src="https://cdn.jsdelivr.net/npm/@datanova/browser@latest/dist/index.global.js"></script>
+
+<!-- Specific version -->
+<script src="https://cdn.jsdelivr.net/npm/@datanova/browser@1.4.0/dist/index.global.js"></script>
+
+<!-- Alternative CDN -->
+<script src="https://unpkg.com/@datanova/browser@latest/dist/index.global.js"></script>
+```
+
 ## Quick Start
+
+### ES Modules / CommonJS
 
 ```javascript
 import { createDatanova } from '@datanova/browser';
@@ -39,6 +56,34 @@ console.log(variant); // 'control' or 'variant'
 
 // Reset user session
 datanova.reset();
+```
+
+### CDN Usage
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@datanova/browser@latest/dist/index.global.js"></script>
+<script>
+  // The SDK is exposed as window.Datanova
+  const datanova = new Datanova.createDatanova('dn_sdk_your_key_here');
+
+  // Track events
+  datanova.trackClick('cta-button', {
+    section: 'hero',
+  });
+
+  // Track page views
+  datanova.trackPageView('homepage', {
+    title: document.title,
+  });
+
+  // Identify users
+  datanova.identify('user-123');
+
+  // Get experiment variant
+  datanova.getVariant(123).then((variant) => {
+    console.log(variant); // 'control' or 'variant'
+  });
+</script>
 ```
 
 ## Features

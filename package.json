@@ -56,7 +56,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "script": "./dist/index.global.js"
     }
-  }
+  },
+  "unpkg": "./dist/index.global.js",
+  "jsdelivr": "./dist/index.global.js"
 }
