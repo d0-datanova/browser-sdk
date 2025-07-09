@@ -1,6 +1,6 @@
 # Datanova Browser SDK
 
-An open-source browser SDK for AI-powered data analytics. This SDK enables you to track user events, run experiments, and analyze user behavior in your web applications.
+A lightweight browser SDK for event tracking and A/B testing.
 
 ## Installation
 
@@ -15,42 +15,37 @@ pnpm add @datanova/browser
 ## Quick Start
 
 ```javascript
-import { createDatanovaClient } from '@datanova/browser';
+import { createDatanova } from '@datanova/browser';
 
-// Initialize the client
-const datanova = createDatanovaClient({
-  apiKey: 'your-api-key',
-  // Optional configuration
-  apiUrl: 'https://api.datanova.sh',
-  debug: true,
+// Initialize with your SDK key
+const datanova = createDatanova('dn_sdk_your_key_here');
+
+// Track user interactions
+datanova.trackClick('cta-button', {
+  section: 'hero',
 });
 
-// Track an event
-datanova.track('page_view', {
-  page: window.location.pathname,
+// Track page views
+datanova.trackPageView('homepage', {
   title: document.title,
 });
 
-// Identify a user
-datanova.identify('user-123', {
-  email: 'user@example.com',
-  name: 'John Doe',
-});
+// Identify users
+datanova.identify('user-123');
 
-// Run an experiment
-const variant = datanova.experiment('homepage-cta', {
-  variants: ['control', 'variant-a', 'variant-b'],
-  defaultVariant: 'control',
-});
+// Get experiment variant
+const variant = await datanova.getVariant(123);
+console.log(variant); // 'control' or 'variant'
+
+// Reset user session
+datanova.reset();
 ```
 
 ## Features
 
-- 📊 **Event Tracking**: Track user interactions and custom events
-- 🧪 **A/B Testing**: Run experiments with multiple variants
+- 📊 **Event Tracking**: Track clicks, page views, impressions, form submissions, and custom events
+- 🧪 **A/B Testing**: Run experiments with control/variant assignment
 - 👤 **User Identification**: Associate events with identified users
-- 💾 **Flexible Storage**: Support for localStorage, sessionStorage, or custom storage
-- 🔒 **Privacy-First**: Built with user privacy in mind
 - 🚀 **Lightweight**: Minimal bundle size with tree-shaking support
 - 🎯 **TypeScript**: Full TypeScript support with type definitions
 
@@ -59,32 +54,70 @@ const variant = datanova.experiment('homepage-cta', {
 ### Client Initialization
 
 ```javascript
-const datanova = createDatanovaClient(options);
+// Simple initialization with SDK key
+const datanova = createDatanova('dn_sdk_your_key_here');
+
+// Advanced initialization with custom services
+import { ConsoleEventsService, DatanovaExperimentsService } from '@datanova/browser';
+
+const datanova = createDatanova({
+  eventsService: new ConsoleEventsService(),
+  experimentsService: new DatanovaExperimentsService('dn_sdk_your_key_here'),
+});
 ```
 
-Options:
-- `apiKey` (required): Your Datanova API key
-- `apiUrl` (optional): API endpoint URL (default: 'https://api.datanova.sh')
-- `debug` (optional): Enable debug mode (default: false)
-- `storage` (optional): Storage adapter (default: localStorage)
-- `flushInterval` (optional): Event flush interval in ms (default: 5000)
+### Event Tracking Methods
 
-### Methods
+#### `trackClick(eventName, properties?)`
 
-#### `track(eventName, properties?)`
-Track a custom event with optional properties.
+Track click events with optional properties.
 
-#### `identify(userId, traits?)`
-Identify a user with optional traits.
+#### `trackPageView(eventName, properties?)`
 
-#### `experiment(experimentId, options)`
-Run an A/B test experiment.
+Track page view events.
 
-#### `page(properties?)`
-Track a page view event.
+#### `trackImpression(eventName, properties?)`
+
+Track impression events (e.g., ads, content visibility).
+
+#### `trackSubmit(eventName, properties?)`
+
+Track form submission events.
+
+#### `trackChange(eventName, properties?)`
+
+Track form field change events.
+
+#### `track(eventName, eventType, properties?)`
+
+Track custom events with specified event type.
+
+### User Management
+
+#### `identify(userId)`
+
+Associate subsequent events with a user ID.
 
 #### `reset()`
-Reset the current user session.
+
+Clear the current user session and start fresh.
+
+### Experiments
+
+#### `getVariant(experimentId)` → `Promise<string>`
+
+Get the assigned variant for an experiment. Returns `'control'` or `'variant'`.
+
+## Event Types
+
+The SDK supports the following event types:
+
+- `click` - User clicks
+- `pageView` - Page views
+- `impression` - Content impressions
+- `submit` - Form submissions
+- `change` - Form field changes
+- `custom` - Custom events
 
 ## Development
 
@@ -118,6 +151,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Support
 
-- 📧 Email: support@datanova.sh
-- 💬 Discord: [Join our community](https://discord.gg/datanova)
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/datanova-browser-sdk/issues)
+- 🐛 Issues: [GitHub Issues](https://github.com/d0-datanova/browser-sdk/issues)
