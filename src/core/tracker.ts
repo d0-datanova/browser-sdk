@@ -1,4 +1,4 @@
-import { Event, EventType, EventsService, Tracker as ITracker, InternalEventType } from '../types';
+import { Event, EventType, EventsService, Tracker as ITracker } from '../types';
 import { deepClone } from '../utils';
 import { ContextManager } from './context';
 
@@ -11,11 +11,7 @@ export class Tracker implements ITracker {
     private contextManager: ContextManager
   ) {}
 
-  track(
-    eventName: string,
-    eventType: EventType | InternalEventType,
-    properties?: Record<string, unknown>
-  ): void {
+  track(eventName: string, eventType: EventType, properties?: Record<string, unknown>): void {
     const eventContext = this.contextManager.getContext();
 
     const event: Event = {

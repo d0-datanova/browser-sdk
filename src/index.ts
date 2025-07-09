@@ -8,7 +8,14 @@ export { DatanovaExperimentsService } from './services/experiments/datanova';
 export { RandomExperimentsService } from './services/experiments/random';
 
 export { EventType } from './types';
-export type { Context, Event, EventsService, ExperimentsService, SDKConfig } from './types';
+export type {
+  Context,
+  Event,
+  EventsService,
+  ExperimentsService,
+  SDKConfig,
+  Variant,
+} from './types';
 
 export { generateAnonymousId } from './identity';
 

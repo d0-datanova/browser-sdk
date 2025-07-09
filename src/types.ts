@@ -1,6 +1,6 @@
 export interface Event {
   eventName: string;
-  eventType: EventType | InternalEventType;
+  eventType: EventType;
   properties?: Record<string, unknown>;
   timestamp: string;
   context: Context;
@@ -59,13 +59,13 @@ export type Variant = 'control' | 'variant';
 
 export interface ExperimentAssignment {
   experimentId: number;
-  variant: string;
+  variant: Variant;
   assignedAt: number;
   expiresAt?: number;
 }
 
 export interface ExperimentsService {
-  getVariant(experimentId: number, identifier: string): Promise<string>;
+  getVariant(experimentId: number, identifier: string): Promise<Variant>;
 }
 
 export interface SDKConfig {
