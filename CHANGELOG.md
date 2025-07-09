@@ -1,3 +1,9 @@
+## [1.3.0](https://github.com/d0-datanova/browser-sdk/compare/v1.2.0...v1.3.0) (2025-07-09)
+
+### Features
+
+* restrict types ([6e27c8e](https://github.com/d0-datanova/browser-sdk/commit/6e27c8ebec82151cfc06c08d2efbe5310fc23a71))
+
 ## [1.2.0](https://github.com/d0-datanova/browser-sdk/compare/v1.1.0...v1.2.0) (2025-07-09)
 
 ### Features
