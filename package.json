@@ -1,0 +1,60 @@
+{
+  "name": "@datanova/browser",
+  "version": "0.0.0",
+  "description": "Lightweight browser SDK for event tracking and A/B testing",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "NODE_ENV=production tsup",
+    "dev": "NODE_ENV=development tsup --watch",
+    "lint": "eslint src",
+    "tc": "tsc --noEmit",
+    "format": "prettier --write src"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "analytics",
+    "ai",
+    "data-analyst",
+    "browser-sdk"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d0-datanova/browser-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/d0-datanova/browser-sdk/issues"
+  },
+  "homepage": "https://github.com/d0-datanova/browser-sdk#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.3",
+    "eslint": "^9.30.1",
+    "prettier": "^3.6.2",
+    "semantic-release": "^24.2.6",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.36.0"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  }
+}
