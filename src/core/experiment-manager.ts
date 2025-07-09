@@ -1,9 +1,9 @@
 import { browserLocalStorage } from '../storage/local-storage';
 import { EventType, ExperimentsService, InternalEventType, Tracker, Variant } from '../types';
 
-interface ExposureRecord {
+interface AssignmentRecord {
   variant: string;
-  trackedAt: number;
+  assignedAt: number;
 }
 
 export class ExperimentManager {
@@ -13,22 +13,22 @@ export class ExperimentManager {
   ) {}
 
   async getVariant(experimentId: number, identifier: string): Promise<Variant> {
-    const exposureKey = this.getExposureKey(experimentId, identifier);
+    const assignmentKey = this.getAssignmentKey(experimentId, identifier);
 
-    const previousExposure = browserLocalStorage.get<ExposureRecord>(exposureKey);
+    const previousAssignment = browserLocalStorage.get<AssignmentRecord>(assignmentKey);
 
     const variant = await this.experimentsService.getVariant(experimentId, identifier);
 
-    const shouldTrackExposure = !previousExposure || previousExposure.variant !== variant;
+    const shouldTrackAssignment = !previousAssignment || previousAssignment.variant !== variant;
 
-    if (shouldTrackExposure) {
-      const exposureRecord: ExposureRecord = {
+    if (shouldTrackAssignment) {
+      const assignmentRecord: AssignmentRecord = {
         variant,
-        trackedAt: Date.now(),
+        assignedAt: Date.now(),
       };
-      browserLocalStorage.set(exposureKey, exposureRecord);
+      browserLocalStorage.set(assignmentKey, assignmentRecord);
 
-      this.tracker?.track('$experiment_exposed', InternalEventType.SYSTEM as EventType, {
+      this.tracker?.track('$variant_assigned', InternalEventType.SYSTEM as EventType, {
         experiment_id: experimentId,
         variant,
       });
@@ -37,7 +37,7 @@ export class ExperimentManager {
     return variant;
   }
 
-  private getExposureKey(experimentId: number, identifier: string): string {
-    return `exposure_${experimentId}_${identifier}`;
+  private getAssignmentKey(experimentId: number, identifier: string): string {
+    return `assignment_${experimentId}_${identifier}`;
   }
 }

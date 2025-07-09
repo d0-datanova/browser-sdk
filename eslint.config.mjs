@@ -5,7 +5,7 @@ export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    ignores: ['dist/**', 'node_modules/**', 'tsup.config.ts'],
+    ignores: ['dist/**', 'node_modules/**', 'tsup.config.ts', 'vitest.config.ts'],
   },
   {
     files: ['**/*.ts'],
