@@ -16,7 +16,7 @@ export class BrowserStorage {
     } else {
       const origin = typeof window !== 'undefined' ? window.location.origin : 'default';
       const originHash = this.hashString(origin).toString(36).slice(-6);
-      this.prefix = `datanova.${originHash}.`;
+      this.prefix = `datanova.sdk.${originHash}.`;
     }
   }
 
