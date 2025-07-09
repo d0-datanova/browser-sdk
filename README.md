@@ -88,10 +88,6 @@ Track form submission events.
 
 Track form field change events.
 
-#### `track(eventName, eventType, properties?)`
-
-Track custom events with specified event type.
-
 ### User Management
 
 #### `identify(userId)`
@@ -117,7 +113,6 @@ The SDK supports the following event types:
 - `impression` - Content impressions
 - `submit` - Form submissions
 - `change` - Form field changes
-- `custom` - Custom events
 
 ## Development
 

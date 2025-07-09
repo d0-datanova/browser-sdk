@@ -12,7 +12,6 @@ export const EventType = {
   IMPRESSION: 'impression',
   SUBMIT: 'submit',
   CHANGE: 'change',
-  CUSTOM: 'custom',
 } as const;
 
 export type EventType = (typeof EventType)[keyof typeof EventType];
