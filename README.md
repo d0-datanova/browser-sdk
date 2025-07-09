@@ -64,7 +64,7 @@ datanova.reset();
 <script src="https://cdn.jsdelivr.net/npm/@datanova/browser@latest/dist/index.global.js"></script>
 <script>
   // The SDK is exposed as window.Datanova
-  const datanova = new Datanova.createDatanova('dn_sdk_your_key_here');
+  const datanova = Datanova.createDatanova('dn_sdk_your_key_here');
 
   // Track events
   datanova.trackClick('cta-button', {
