@@ -1,3 +1,9 @@
+## [1.3.2](https://github.com/d0-datanova/browser-sdk/compare/v1.3.1...v1.3.2) (2025-07-09)
+
+### Bug Fixes
+
+* use proper url ([749bb0c](https://github.com/d0-datanova/browser-sdk/commit/749bb0c529603cba795902fcc63e2ac7bbc1e245))
+
 ## [1.3.1](https://github.com/d0-datanova/browser-sdk/compare/v1.3.0...v1.3.1) (2025-07-09)
 
 ### Bug Fixes
