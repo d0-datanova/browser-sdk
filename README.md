@@ -100,7 +100,7 @@ Clear the current user session and start fresh.
 
 ### Experiments
 
-#### `getVariant(experimentId)` → `Promise<string>`
+#### `getVariant(experimentId)` → `Promise<Variant>`
 
 Get the assigned variant for an experiment. Returns `'control'` or `'variant'`.
 

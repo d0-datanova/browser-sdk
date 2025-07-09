@@ -1,5 +1,5 @@
 import { browserLocalStorage } from '../storage/local-storage';
-import { EventType, ExperimentsService, InternalEventType, Tracker } from '../types';
+import { EventType, ExperimentsService, InternalEventType, Tracker, Variant } from '../types';
 
 interface ExposureRecord {
   variant: string;
@@ -12,7 +12,7 @@ export class ExperimentManager {
     private tracker: Tracker | undefined
   ) {}
 
-  async getVariant(experimentId: number, identifier: string): Promise<string> {
+  async getVariant(experimentId: number, identifier: string): Promise<Variant> {
     const exposureKey = this.getExposureKey(experimentId, identifier);
 
     const previousExposure = browserLocalStorage.get<ExposureRecord>(exposureKey);

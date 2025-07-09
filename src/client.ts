@@ -1,7 +1,7 @@
 import { ContextManager } from './core/context';
 import { ExperimentManager } from './core/experiment-manager';
 import { Tracker as ContextAwareTracker } from './core/tracker';
-import { EventType, SDKConfig } from './types';
+import { EventType, SDKConfig, Variant } from './types';
 
 export class Datanova {
   private initialized = false;
@@ -81,7 +81,7 @@ export class Datanova {
     this.tracker!.track(eventName, EventType.CHANGE, properties);
   };
 
-  getVariant = async (experimentId: number): Promise<string> => {
+  getVariant = async (experimentId: number): Promise<Variant> => {
     this.assertInitialized();
     this.assertExperimentManager();
 
