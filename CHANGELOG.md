@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/d0-datanova/browser-sdk/compare/v1.4.0...v1.5.0) (2025-07-09)
+
+### Features
+
+* add sdk to storage key prefix ([e3797bd](https://github.com/d0-datanova/browser-sdk/commit/e3797bd630014f62a00adac583cf0daf32938e31))
+
 ## [1.4.0](https://github.com/d0-datanova/browser-sdk/compare/v1.3.2...v1.4.0) (2025-07-09)
 
 ### Features
