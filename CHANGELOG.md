@@ -1,3 +1,9 @@
+## [1.3.1](https://github.com/d0-datanova/browser-sdk/compare/v1.3.0...v1.3.1) (2025-07-09)
+
+### Bug Fixes
+
+* set getVariant return type to Variant ([875d36e](https://github.com/d0-datanova/browser-sdk/commit/875d36edab316ca63b7fd7b366269e015266ef7d))
+
 ## [1.3.0](https://github.com/d0-datanova/browser-sdk/compare/v1.2.0...v1.3.0) (2025-07-09)
 
 ### Features
