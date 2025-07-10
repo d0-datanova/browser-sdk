@@ -194,8 +194,8 @@ describe('ContextManager', () => {
     it('should return empty browser context in non-browser environment', () => {
       // Mock undefined window
       const originalWindow = global.window;
-      // @ts-expect-error - Deleting window for testing non-browser environment
-      delete global.window;
+      // @ts-expect-error - Setting window to undefined for testing non-browser environment
+      global.window = undefined;
 
       const cm = new ContextManager();
       const context = cm.getContext();

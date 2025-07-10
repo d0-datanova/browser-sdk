@@ -39,7 +39,7 @@ describe('createDatanova', () => {
     expect(mockEventsService.send).toHaveBeenCalled();
   });
 
-  it('should work with only events service', () => {
+  it('should work with only events service', async () => {
     const mockEventsService: EventsService = {
       send: vi.fn().mockResolvedValue(undefined),
     };
@@ -56,12 +56,12 @@ describe('createDatanova', () => {
     }).not.toThrow();
 
     // Should throw when trying to use experiments
-    expect(async () => {
+    await expect(async () => {
       await datanova.getVariant(123);
     }).rejects.toThrow('No experiments service configured');
   });
 
-  it('should work with only experiments service', () => {
+  it('should work with only experiments service', async () => {
     const mockExperimentsService: ExperimentsService = {
       getVariant: vi.fn().mockResolvedValue('control'),
     };
@@ -73,9 +73,7 @@ describe('createDatanova', () => {
     expect(datanova).toBeInstanceOf(Datanova);
 
     // Should be able to get variants
-    expect(async () => {
-      await datanova.getVariant(123);
-    }).not.toThrow();
+    await expect(datanova.getVariant(123)).resolves.toBeDefined();
 
     // Should throw when trying to track events
     expect(() => {

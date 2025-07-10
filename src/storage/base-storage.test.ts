@@ -67,8 +67,8 @@ describe('BrowserStorage', () => {
 
     it('should handle non-browser environment', () => {
       const originalWindow = global.window;
-      // @ts-expect-error - Deleting window for testing non-browser environment
-      delete global.window;
+      // @ts-expect-error - Setting window to undefined for testing non-browser environment
+      global.window = undefined;
 
       const storage = new BrowserStorage('localStorage');
 
