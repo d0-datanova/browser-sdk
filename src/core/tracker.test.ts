@@ -56,7 +56,7 @@ describe('Tracker', () => {
     });
 
     it('should include user ID in context if set', () => {
-      contextManager.setUserId('user123');
+      contextManager.setUser('user123');
 
       tracker.track('test_event', EventType.CLICK);
 
@@ -64,6 +64,26 @@ describe('Tracker', () => {
         expect.objectContaining({
           context: expect.objectContaining({
             userId: 'user123',
+          }),
+        })
+      );
+    });
+
+    it('should include user ID and properties in context if set', () => {
+      const userProperties = {
+        plan: 'premium',
+        role: 'admin',
+        company: 'Acme Corp',
+      };
+      contextManager.setUser('user123', userProperties);
+
+      tracker.track('test_event', EventType.CLICK);
+
+      expect(mockEventsService.send).toHaveBeenCalledWith(
+        expect.objectContaining({
+          context: expect.objectContaining({
+            userId: 'user123',
+            userProperties: userProperties,
           }),
         })
       );

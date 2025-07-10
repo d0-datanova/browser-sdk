@@ -110,20 +110,48 @@ describe('ContextManager', () => {
     });
   });
 
-  describe('setUserId', () => {
+  describe('setUser', () => {
     it('should set user ID', () => {
-      contextManager.setUserId('user123');
+      contextManager.setUser('user123');
       const context = contextManager.getContext();
       expect(context.userId).toBe('user123');
     });
+
+    it('should set user ID with properties', () => {
+      const properties = {
+        plan: 'premium',
+        role: 'admin',
+        company: 'Acme Corp',
+      };
+      contextManager.setUser('user123', properties);
+      const context = contextManager.getContext();
+      expect(context.userId).toBe('user123');
+      expect(context.userProperties).toEqual(properties);
+    });
+
+    it('should update user properties when called again', () => {
+      contextManager.setUser('user123', { plan: 'free' });
+      contextManager.setUser('user123', { plan: 'premium', role: 'user' });
+      const context = contextManager.getContext();
+      expect(context.userId).toBe('user123');
+      expect(context.userProperties).toEqual({ plan: 'premium', role: 'user' });
+    });
   });
 
-  describe('clearUserId', () => {
+  describe('clearUser', () => {
     it('should clear user ID', () => {
-      contextManager.setUserId('user123');
-      contextManager.clearUserId();
+      contextManager.setUser('user123');
+      contextManager.clearUser();
       const context = contextManager.getContext();
       expect(context.userId).toBeUndefined();
+    });
+
+    it('should clear user ID and properties', () => {
+      contextManager.setUser('user123', { plan: 'premium' });
+      contextManager.clearUser();
+      const context = contextManager.getContext();
+      expect(context.userId).toBeUndefined();
+      expect(context.userProperties).toBeUndefined();
     });
   });
 
@@ -150,7 +178,7 @@ describe('ContextManager', () => {
     });
 
     it('should merge overrides with base context', () => {
-      contextManager.setUserId('original-user');
+      contextManager.setUser('original-user');
       contextManager.overrideContext({
         browser: {
           url: 'https://override.com',
@@ -166,11 +194,22 @@ describe('ContextManager', () => {
       expect(context.userId).toBe('original-user'); // Not overridden
       expect(context.browser.url).toBe('https://override.com'); // Overridden
     });
+
+    it('should override userProperties', () => {
+      contextManager.setUser('user123', { plan: 'free', role: 'user' });
+      contextManager.overrideContext({
+        userProperties: { plan: 'premium', company: 'Acme Corp' },
+      });
+
+      const context = contextManager.getContext();
+      expect(context.userId).toBe('user123');
+      expect(context.userProperties).toEqual({ plan: 'premium', company: 'Acme Corp' });
+    });
   });
 
   describe('getContext', () => {
     it('should return complete context', () => {
-      contextManager.setUserId('user123');
+      contextManager.setUser('user123');
       const context = contextManager.getContext();
 
       expect(context).toMatchObject({
@@ -217,7 +256,7 @@ describe('ContextManager', () => {
   describe('getIdentifier', () => {
     it('should prioritize userId over fingerprint', () => {
       vi.mocked(browserLocalStorage.get).mockReturnValue('fingerprint-123');
-      contextManager.setUserId('user123');
+      contextManager.setUser('user123');
 
       expect(contextManager.getIdentifier()).toBe('user123');
     });

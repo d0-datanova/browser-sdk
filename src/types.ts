@@ -24,6 +24,7 @@ export type InternalEventType = (typeof InternalEventType)[keyof typeof Internal
 
 export interface Context {
   userId?: string;
+  userProperties?: Record<string, unknown>;
   sessionId: string;
   browser: BrowserContext;
   library: {
