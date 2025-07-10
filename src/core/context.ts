@@ -4,6 +4,7 @@ import { BrowserContext, Context } from '../types';
 
 export class ContextManager {
   private userId?: string;
+  private userProperties?: Record<string, unknown>;
   private sessionId: string;
   private fingerprint: string;
   private contextOverrides?: Partial<Context>;
@@ -13,12 +14,14 @@ export class ContextManager {
     this.fingerprint = this.getOrCreateFingerprint();
   }
 
-  setUserId(userId: string): void {
+  setUser(userId: string, properties?: Record<string, unknown>): void {
     this.userId = userId;
+    this.userProperties = properties;
   }
 
-  clearUserId(): void {
+  clearUser(): void {
     this.userId = undefined;
+    this.userProperties = undefined;
   }
 
   overrideContext(contextOverrides: Partial<Context>): void {
@@ -28,6 +31,7 @@ export class ContextManager {
   getContext(): Context {
     const baseContext: Context = {
       userId: this.userId,
+      userProperties: this.userProperties,
       sessionId: this.sessionId,
       browser: this.getBrowserContext(),
       library: {

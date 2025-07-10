@@ -73,6 +73,17 @@ describe('Datanova Client', () => {
         client.identify('user123');
       }).not.toThrow();
     });
+
+    it('should identify user with properties', () => {
+      client.init({ eventsService: mockEventsService });
+      expect(() => {
+        client.identify('user123', {
+          plan: 'premium',
+          role: 'admin',
+          company: 'Acme Corp',
+        });
+      }).not.toThrow();
+    });
   });
 
   describe('reset', () => {
@@ -89,6 +100,22 @@ describe('Datanova Client', () => {
         client.reset();
       }).not.toThrow();
     });
+
+    it('should clear user properties on reset', () => {
+      client.init({ eventsService: mockEventsService });
+      client.identify('user123', { plan: 'premium' });
+      client.reset();
+      client.track('test_event', EventType.CLICK);
+
+      expect(mockEventsService.send).toHaveBeenCalledWith(
+        expect.objectContaining({
+          context: expect.objectContaining({
+            userId: undefined,
+            userProperties: undefined,
+          }),
+        })
+      );
+    });
   });
 
   describe('tracking methods', () => {
@@ -97,6 +124,22 @@ describe('Datanova Client', () => {
     });
 
     describe('track', () => {
+      it('should include user properties in tracked events', () => {
+        const userProperties = { plan: 'premium', role: 'admin' };
+        client.identify('user123', userProperties);
+        client.track('feature_used', EventType.CLICK);
+
+        expect(mockEventsService.send).toHaveBeenCalledWith(
+          expect.objectContaining({
+            eventName: 'feature_used',
+            eventType: EventType.CLICK,
+            context: expect.objectContaining({
+              userId: 'user123',
+              userProperties: userProperties,
+            }),
+          })
+        );
+      });
       it('should track event with properties', () => {
         client.track('button_clicked', EventType.CLICK, { buttonId: 'submit' });
         expect(mockEventsService.send).toHaveBeenCalledTimes(1);

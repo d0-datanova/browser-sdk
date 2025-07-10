@@ -35,14 +35,14 @@ export class Datanova {
     this.initialized = true;
   }
 
-  identify = (userId: string): void => {
+  identify = (userId: string, properties?: Record<string, unknown>): void => {
     this.assertInitialized();
-    this.contextManager.setUserId(userId);
+    this.contextManager.setUser(userId, properties);
   };
 
   reset = (): void => {
     this.assertInitialized();
-    this.contextManager.clearUserId();
+    this.contextManager.clearUser();
   };
 
   track = (eventName: string, eventType: EventType, properties?: Record<string, unknown>): void => {
