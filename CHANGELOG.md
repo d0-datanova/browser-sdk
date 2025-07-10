@@ -1,3 +1,9 @@
+## [1.7.0](https://github.com/d0-datanova/browser-sdk/compare/v1.6.0...v1.7.0) (2025-07-10)
+
+### Features
+
+* add userProperties to context ([#3](https://github.com/d0-datanova/browser-sdk/issues/3)) ([d518c21](https://github.com/d0-datanova/browser-sdk/commit/d518c217cc78fa10a543017d757d4da77a9a806b))
+
 ## [1.6.0](https://github.com/d0-datanova/browser-sdk/compare/v1.5.0...v1.6.0) (2025-07-10)
 
 ### Features
