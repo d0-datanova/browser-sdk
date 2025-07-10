@@ -1,3 +1,9 @@
+## [1.6.0](https://github.com/d0-datanova/browser-sdk/compare/v1.5.0...v1.6.0) (2025-07-10)
+
+### Features
+
+* refine interface ([#2](https://github.com/d0-datanova/browser-sdk/issues/2)) ([0ec124a](https://github.com/d0-datanova/browser-sdk/commit/0ec124abd352e5964dfd63a4bf376e4aa4bea607))
+
 ## [1.5.0](https://github.com/d0-datanova/browser-sdk/compare/v1.4.0...v1.5.0) (2025-07-09)
 
 ### Features
