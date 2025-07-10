@@ -1,4 +1,4 @@
-export { Datanova } from './client';
+export { Datanova } from './datanova';
 
 export { DatanovaEventsService } from './services/events/datanova';
 export { ConsoleEventsService } from './services/events/console';
@@ -19,4 +19,4 @@ export type {
 
 export { generateAnonymousId } from './identity';
 
-export { createDatanova } from './create';
+export { createDatanova } from './createDatanova';

@@ -1,4 +1,4 @@
-import { Datanova } from './client';
+import { Datanova } from './datanova';
 import { DatanovaEventsService } from './services/events/datanova';
 import { DatanovaExperimentsService } from './services/experiments/datanova';
 import { EventsService, ExperimentsService } from './types';
