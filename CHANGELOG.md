@@ -1,3 +1,9 @@
+## [1.8.0](https://github.com/d0-datanova/browser-sdk/compare/v1.7.0...v1.8.0) (2025-07-11)
+
+### Features
+
+* change storage key prefix ([#4](https://github.com/d0-datanova/browser-sdk/issues/4)) ([ca134a5](https://github.com/d0-datanova/browser-sdk/commit/ca134a5758e604eb20e9bf7cb76834b705d86022))
+
 ## [1.7.0](https://github.com/d0-datanova/browser-sdk/compare/v1.6.0...v1.7.0) (2025-07-10)
 
 ### Features
