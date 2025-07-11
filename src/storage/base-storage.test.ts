@@ -48,7 +48,7 @@ describe('BrowserStorage', () => {
       storage.set('test', 'value');
 
       const call = vi.mocked(mockStorage.setItem).mock.calls[0];
-      expect(call[0]).toMatch(/^datanova\.sdk\.[a-z0-9]{6}\.test$/);
+      expect(call[0]).toMatch(/^datanova\.sdk\.browser\.[a-z0-9]{4}\.test$/);
 
       window.localStorage = originalLocalStorage;
     });
