@@ -1,3 +1,15 @@
+## [2.0.0](https://github.com/d0-datanova/browser-sdk/compare/v1.8.0...v2.0.0) (2025-07-14)
+
+### ⚠ BREAKING CHANGES
+
+* Updated API endpoints from /api/v1/events to /api/v1/e and /api/v1/experiments/{experimentId} to /api/v1/exp/{experimentId}
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+
+* feat\!: shorten API endpoint paths ([558b4c6](https://github.com/d0-datanova/browser-sdk/commit/558b4c64d5deeb8fafd182d76f3a3bc9558d3591))
+
 ## [1.8.0](https://github.com/d0-datanova/browser-sdk/compare/v1.7.0...v1.8.0) (2025-07-11)
 
 ### Features
