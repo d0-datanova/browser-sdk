@@ -6,7 +6,7 @@ import { Event, EventType } from '../../types';
 declare global {
   var __API_BASE_URL__: string;
 }
-(global as { __API_BASE_URL__: string }).__API_BASE_URL__ = 'https://api.datanova.com';
+(global as { __API_BASE_URL__: string }).__API_BASE_URL__ = 'https://app.datanova.sh';
 
 describe('DatanovaEventsService', () => {
   let service: DatanovaEventsService;
@@ -105,7 +105,7 @@ describe('DatanovaEventsService', () => {
 
       await service.send(event);
 
-      expect(fetch).toHaveBeenCalledWith('https://api.datanova.com/api/v1/events', {
+      expect(fetch).toHaveBeenCalledWith('https://app.datanova.sh/api/v1/e', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

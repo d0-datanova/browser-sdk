@@ -99,7 +99,7 @@ export class DatanovaExperimentsService implements ExperimentsService {
 
   private async fetchConfig(experimentId: number): Promise<ExperimentConfig | null> {
     try {
-      const response = await fetch(`${__API_BASE_URL__}/api/v1/experiments/${experimentId}`, {
+      const response = await fetch(`${__API_BASE_URL__}/api/v1/exp/${experimentId}`, {
         headers: {
           Authorization: `Bearer ${this.sdkKey}`,
         },
