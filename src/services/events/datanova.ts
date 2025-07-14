@@ -5,7 +5,7 @@ declare const __API_BASE_URL__: string;
 export class DatanovaEventsService implements EventsService {
   constructor(
     private sdkKey: string,
-    private endpoint: string = `${__API_BASE_URL__}/api/v1/events`
+    private endpoint: string = `${__API_BASE_URL__}/api/v1/e`
   ) {
     if (!sdkKey || !sdkKey.startsWith('dn_sdk_')) {
       throw new Error("Invalid API key. Must start with 'dn_sdk_'");

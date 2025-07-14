@@ -40,14 +40,11 @@ describe('DatanovaExperimentsService', () => {
 
       const variant = await service.getVariant(experimentId, identifier);
 
-      expect(fetch).toHaveBeenCalledWith(
-        `https://app.datanova.sh/api/v1/experiments/${experimentId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${sdkKey}`,
-          },
-        }
-      );
+      expect(fetch).toHaveBeenCalledWith(`https://app.datanova.sh/api/v1/exp/${experimentId}`, {
+        headers: {
+          Authorization: `Bearer ${sdkKey}`,
+        },
+      });
 
       expect(['control', 'variant']).toContain(variant);
       expect(browserLocalStorage.set).toHaveBeenCalledWith(
